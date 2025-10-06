@@ -1,21 +1,22 @@
 <?php
-    include("../includes/header.php");
+    include("../includes/header.php"); // incluimos el header y los datos
     include("../data/datos.php");
 ?>
 
     <main>
         <h1>Registrar nuevo animal</h1>
-
-    <form action="process-animal.php" method="POST" enctype="multipart/form-data" class ="form-group">
+    <!-- Formulario para registrar un nuevo animal -->
+    <form action="process-animal.php" method="POST" enctype="multipart/form-data" class ="form-group"> <!-- formulario con enctype para subir archivos y con clase form-group para estilos -->
         <label for="categoria">Categoría:</label>
         <select name="categoria" id="categoria" required>
             <?php
-                foreach ($categorias as $id => $categ) {
+                foreach ($categorias as $id => $categ) {//recorremos las categorías para mostrarlas en el select
                     echo '<option value="' . $id . '">' . htmlspecialchars($categ['nombre']) . '</option>';
                 }
             ?>
         </select>
 
+        <!-- añadimos campos para la información del animal -->
         <label for="animal_id">ID del animal:</label>
         <input type="number" name="animal_id" id="animal_id" required>
 
@@ -40,5 +41,5 @@
     </form>
     </main>
 <?php
-    include("../includes/footer.php");
+    include("../includes/footer.php"); //incluimos el footer
 ?>
