@@ -1,7 +1,9 @@
 
+
 <?php 
 include("../includes/header.php");
 include("../data/datos.php");
+include("../includes/funciones.php");
 ?>
 <main>
 <?php
@@ -12,13 +14,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
             $img_dest = "../uploads/images/{$animal_id}.jpg";
             if (!move_uploaded_file($_FILES['imagen']['tmp_name'], $img_dest)) {
-                $success = false; echo '<p>Error al subir la imagen.</p>';
+                $success = false; mostrarErrores(["Error al subir la imagen."]);
             }
         }
         if (isset($_FILES['pdf']) && $_FILES['pdf']['error'] === UPLOAD_ERR_OK) {
             $pdf_dest = "../uploads/pdfs/{$animal_id}.pdf";
             if (!move_uploaded_file($_FILES['pdf']['tmp_name'], $pdf_dest)) {
-                $success = false; echo '<p>Error al subir el PDF.</p>';
+                $success = false; mostrarErrores(["Error al subir el PDF."]);
             }
         }
         if ($success) echo '<p>Archivos actualizados correctamente.</p>';
@@ -40,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
     <?php
 } else {
-    echo "<h1>Animal no encontrado</h1>";
+    echo "<h1>Animal no encontrado.";
 }
 ?>
 </main>
